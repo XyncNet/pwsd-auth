@@ -1,5 +1,5 @@
 from tortoise.fields import CharField
-from x_auth.models import User as BaseUser
+from x_auth.model import User as BaseUser
 
 
 class User(BaseUser):

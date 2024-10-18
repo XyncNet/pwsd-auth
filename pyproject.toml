@@ -10,7 +10,10 @@ readme = "README.md"
 license = {text = "MIT"}
 dynamic = ["version"]
 
-dependencies = ["xn-auth"]
+dependencies = [
+    "python-multipart",
+    "xn-auth",
+]
 
 [project.optional-dependencies]
 dev = [

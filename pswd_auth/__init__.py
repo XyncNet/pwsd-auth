@@ -4,7 +4,7 @@ from x_auth import AuthFailReason, AuthException
 from x_auth.backend import AuthBackend as BaseAuthBackend
 from x_auth.pydantic import Token, AuthUser
 
-from pswd_auth.models import User
+from pswd_auth.model import User
 from pswd_auth.pydantic import UserReg
 
 
