@@ -1,5 +1,5 @@
 include .env
-PACKAGE := x_auth
+PACKAGE := pswd_auth
 VPYTHON := $(VENV)/bin/python
 
 .PHONY: all install pre-commit clean build twine patch

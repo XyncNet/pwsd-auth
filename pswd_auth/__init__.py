@@ -17,6 +17,10 @@ class PasswordRequestForm:
 
 
 class AuthBackend(BaseAuthBackend):
+    def __init__(self, secret: str, db_user_model: type(User) = User):
+        super().__init__(secret, db_user_model)
+        self.routes["token"] = self.login_for_access_token, "POST"
+
     # API ENDOINTS
     # api reg endpoint
     async def reg(self, user_reg_input: UserReg) -> Token:
