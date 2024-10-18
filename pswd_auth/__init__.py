@@ -4,8 +4,8 @@ from x_auth import AuthFailReason, AuthException
 from x_auth.backend import AuthBackend as BaseAuthBackend
 from x_auth.pydantic import Token, AuthUser
 
-from pwd_auth.models import User
-from pwd_auth.pydantic import UserReg
+from pswd_auth.models import User
+from pswd_auth.pydantic import UserReg
 
 
 class PasswordRequestForm:
