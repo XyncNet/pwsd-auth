@@ -6,8 +6,8 @@
 
 ### INSTALL
 ```bash
-pip install x-auth
+pip install pswd-auth
 ```
 
 ---
-Made with ❤ on top of the [X-Model](https://github.com/XyncNet/x-model).
+Made with ❤ on top of the [X-Auth](https://github.com/XyncNet/x-auth) and [X-Model](https://github.com/XyncNet/x-model).
