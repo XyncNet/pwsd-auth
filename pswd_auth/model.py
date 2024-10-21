@@ -7,7 +7,7 @@ class User(BaseUser):
 
     __cc = PasswordHash.recommended()
 
-    password: str | None = CharField(60, null=True)
+    password: str | None = CharField(97, null=True)
 
     def pwd_vrf(self, pwd: str) -> bool:
         return self.__cc.verify(pwd, self.password)

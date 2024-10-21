@@ -1,7 +1,8 @@
 from typing import Annotated
 from fastapi import Depends, Form
-from x_auth import AuthFailReason, AuthException
-from x_auth.backend import AuthBackend as BaseAuthBackend
+from fastapi.openapi.models import OAuth2, OAuthFlows, OAuthFlowPassword
+from x_auth import AuthFailReason, AuthException, Security
+from x_auth.router import AuthRouter as BaseRouter
 from x_auth.pydantic import Token, AuthUser
 
 from pswd_auth.model import User
@@ -16,10 +17,21 @@ class PasswordRequestForm:
         self.password = password
 
 
-class AuthBackend(BaseAuthBackend):
+class PswdScheme(Security):
+    """HTTP Bearer token authentication"""
+
+    def __init__(self, token_path: str = "token", auto_error: bool = False, scheme_name: str = None):
+        flows = OAuthFlows(password=OAuthFlowPassword(tokenUrl="/" + token_path))
+        mdl = OAuth2(flows=flows)
+        super().__init__(mdl, auto_error, scheme_name)
+
+
+class AuthRouter(BaseRouter):
+    token_path = "token"
+
     def __init__(self, secret: str, db_user_model: type(User) = User):
-        super().__init__(secret, db_user_model)
-        self.routes["token"] = self.login_for_access_token, "POST"
+        super().__init__(secret, db_user_model, PswdScheme(token_path=self.token_path))
+        self.routes[self.token_path] = self.login_for_access_token, "POST"
 
     # API ENDOINTS
     # api reg endpoint
